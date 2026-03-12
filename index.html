@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Birthday Reminder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <div class="hero__badge">Birthday Reminder</div>
+        <h1>Never miss a birthday</h1>
+        <p>Add friends and family, then see upcoming birthdays sorted by soonest.</p>
+      </header>
+
+      <section class="card">
+        <h2>Add a birthday</h2>
+        <form id="birthday-form" autocomplete="off">
+          <label>
+            Name
+            <input type="text" id="name" placeholder="e.g., Alex Rivera" required />
+          </label>
+          <label>
+            Date
+            <input type="date" id="date" required />
+          </label>
+          <button type="submit">Add</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="list-header">
+          <h2>Upcoming birthdays</h2>
+          <div class="toolbar">
+            <button id="export-json" class="ghost" type="button">Export JSON</button>
+            <button id="export-csv" class="ghost" type="button">Export CSV</button>
+            <label class="ghost file-button">
+              Import JSON
+              <input id="import-json" type="file" accept="application/json" />
+            </label>
+            <label class="ghost file-button">
+              Import CSV
+              <input id="import-csv" type="file" accept="text/csv" />
+            </label>
+            <label class="ghost select-button">
+              Notify window
+              <select id="notify-window">
+                <option value="7">7 days</option>
+                <option value="14">14 days</option>
+                <option value="30">30 days</option>
+              </select>
+            </label>
+            <button id="enable-notifications" class="ghost" type="button">
+              Enable notifications
+            </button>
+            <button id="clear-all" class="ghost" type="button">Clear all</button>
+          </div>
+        </div>
+        <ul id="birthday-list" class="list"></ul>
+        <p id="empty-state" class="empty">No birthdays yet. Add one above.</p>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <template id="birthday-item">
+      <li class="item">
+        <div class="item__info">
+          <div class="item__name"></div>
+          <div class="item__meta"></div>
+          <div class="item__edit" hidden>
+            <input type="text" class="edit-name" />
+            <input type="date" class="edit-date" />
+            <div class="edit-actions">
+              <button class="ghost save-edit" type="button">Save</button>
+              <button class="ghost cancel-edit" type="button">Cancel</button>
+            </div>
+          </div>
+        </div>
+        <div class="item__actions">
+          <button class="ghost edit" type="button">Edit</button>
+          <button class="danger remove" type="button">Remove</button>
+        </div>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
